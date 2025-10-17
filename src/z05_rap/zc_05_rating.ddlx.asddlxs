@@ -1,0 +1,35 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo:
+{
+    typeName: 'Rating',
+    typeNamePlural: 'Ratings',
+    title.value: 'Rating',
+    description.value: 'UserName'
+}
+annotate entity ZC_05_Rating
+    with 
+{
+@UI.facet: [ { position: 10, type: #FIELDGROUP_REFERENCE, label: 'Rating Details', targetQualifier: 'DETAILS' },
+               { position: 20, type: #FIELDGROUP_REFERENCE, label: 'Admin Data', targetQualifier: 'ADMIN' }]
+
+@UI.fieldGroup: [{ position: 10, qualifier: 'ADMIN' }]
+    RatingUuid;
+    
+    @UI.fieldGroup: [{ position: 20, qualifier: 'ADMIN' }]
+    MovieUuid;
+    
+    @UI.lineItem: [ { position: 10, importance: #MEDIUM } ]
+    @UI.fieldGroup: [{ position: 10, qualifier: 'DETAILS' }]
+    UserName;
+    
+    @UI.lineItem: [ { position: 20, importance: #MEDIUM } ]
+    @UI.fieldGroup: [{ position: 20, qualifier: 'DETAILS' }]
+    Rating;
+    
+    @UI.lineItem: [ { position: 30, importance: #MEDIUM } ]
+    @UI.fieldGroup: [{ position: 30, qualifier: 'ADMIN' }]
+    RatingDate;
+    /* Associations */
+//    _Movie;
+}

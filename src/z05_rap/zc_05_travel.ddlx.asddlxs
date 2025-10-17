@@ -1,0 +1,81 @@
+@Metadata.layer: #CORE
+
+@UI.headerInfo:
+{
+    typeName: 'Travel',
+    typeNamePlural: 'Travels',
+    title.value: 'TravelId',
+    description.value: 'Description'
+}
+@UI.presentationVariant: [{sortOrder: [{ by: 'BeginDate', direction: #DESC }]}]
+
+@UI.lineItem: [ { criticality: 'StatusCriticality'  } ]
+
+annotate entity ZC_05_Travel with
+
+{
+  /* Facets*/
+  @UI.facet: [ { position: 10, type: #FIELDGROUP_REFERENCE, label: 'Travel Details', targetQualifier: 'DETAILS' },
+               { position: 20, type: #FIELDGROUP_REFERENCE, label: 'Admin Data', targetQualifier: 'ADMIN' },
+               { position: 30, type: #LINEITEM_REFERENCE, label: 'Bookings', targetElement: '_Bookings' } ]
+
+  /* Actions */
+
+
+  /*Fields*/
+
+  @UI.lineItem: [ { position: 10, importance: #MEDIUM } , { position:10, type: #FOR_ACTION, label: 'Cancel Travel', dataAction: 'cancelTravel' }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'DETAILS' }]
+  @UI.identification: [{ position:10, type: #FOR_ACTION, label: 'Cancel Travel', dataAction: 'cancelTravel' }]
+  TravelId;
+
+  @UI.lineItem: [ { position: 20, importance: #LOW } ]
+  @UI.selectionField: [ { position: 10 } ]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'DETAILS' }]
+  AgencyId;
+
+  @UI.lineItem: [ { position: 30, importance: #MEDIUM } ]
+  @UI.selectionField: [ { position: 20 } ]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'DETAILS' }]
+  CustomerId;
+
+  @UI.lineItem: [ { position: 15, importance: #MEDIUM } ]
+  @UI.selectionField: [ { position: 30 } ]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'DETAILS' }]
+  BeginDate;
+
+  @UI.lineItem: [ { position: 16, importance: #MEDIUM } ]
+  @UI.selectionField: [ { position: 40 } ]
+  @UI.fieldGroup: [{ position: 50, qualifier: 'DETAILS' }]
+  EndDate;
+
+  @UI.lineItem: [ { position: 40, importance: #MEDIUM } ]
+  @UI.fieldGroup: [{ position: 60, qualifier: 'DETAILS' }]
+  BookingFee;
+
+  @UI.lineItem: [ { position: 50, importance: #HIGH } ]
+  @UI.selectionField: [ { position: 50 } ]
+  @UI.fieldGroup: [{ position: 70, qualifier: 'DETAILS' }]
+  TotalPrice;
+
+  //    CurrencyCode;
+  @UI.lineItem: [ { position: 17, importance: #HIGH} ]
+  @UI.fieldGroup: [{ position: 80, qualifier: 'DETAILS' }]
+  Description;
+
+  @UI.lineItem: [ { position: 60, criticality: 'StatusCriticality', criticalityRepresentation: #WITHOUT_ICON, importance: #HIGH} ]
+  @UI.selectionField: [ { position: 60 } ]
+  @UI.fieldGroup: [{ position: 90, qualifier: 'DETAILS' }]
+  Status;
+  @UI.fieldGroup: [{ position: 10, qualifier: 'ADMIN' }]
+  Createdby;
+  @UI.fieldGroup: [{ position: 20, qualifier: 'ADMIN' }]
+  Createdat;
+  @UI.fieldGroup: [{ position: 30, qualifier: 'ADMIN' }]
+  Lastchangedby;
+  @UI.fieldGroup: [{ position: 40, qualifier: 'ADMIN' }]
+  Lastchangedat;
+
+  @UI.hidden: true
+  StatusCriticality;
+}
